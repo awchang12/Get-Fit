@@ -50,10 +50,12 @@ ActiveRecord::Schema.define(version: 2018_08_28_173345) do
     t.string "first_name"
     t.string "last_name"
     t.string "username"
-    t.integer "weight"
+    t.integer "startingWeight"
     t.integer "height"
     t.integer "age"
     t.string "gender"
+    t.string "password_digest"
+    t.integer "goalWeight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

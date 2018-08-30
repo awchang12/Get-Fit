@@ -1,7 +1,21 @@
 class UsersController < ApplicationController
-
+    skip_before_action :authenticate, only: [:create]
     before_action :find_user, only: [:show, :update]
-
+    
+    def show_user
+      render json: { 
+        id: current_user.id,
+        first_name: current_user.first_name, 
+        last_name: current_user.last_name,
+        username: current_user.username,
+        height: current_user.height,
+        age: current_user.age,
+        startingWeight: current_user.startingWeight,
+        gender: current_user.gender,
+        goalWeight: current_user.goalWeight
+      }
+    end
+  
     def index
       @users = User.all
       render json: @users, include: ['logs', 'goals', 'foods']
@@ -13,6 +27,7 @@ class UsersController < ApplicationController
     end
   
     def create
+      debugger
       @user = User.new(user_params)
       if @user.save
         render json: @user, status: :accepted
@@ -29,7 +44,7 @@ class UsersController < ApplicationController
     private
   
     def user_params
-      params.require(:user).permit(:username, :id, :name, :height, :age)
+      params.permit(:first_name, :last_name, :username, :id, :startingWeight, :goalWeight, :height, :age, :password, :gender)
   
     end
   
