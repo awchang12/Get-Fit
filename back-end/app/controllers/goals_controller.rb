@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
   skip_before_action :authenticate, only: [:create]
-    before_action :find_goal, only: [:show, :update]
+    before_action :find_goal, only: [:show, :update, :destroy]
     
   
     def index
@@ -22,9 +22,10 @@ class GoalsController < ApplicationController
       end
     end
   
-    def update
-  
-  
+    def destroy
+      @goal.destroy
+      @goals = Goal.all.select{|goal| goal.user_id == current_user.id}
+      render json: @goals
     end
   
     private

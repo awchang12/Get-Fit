@@ -82,7 +82,7 @@ class App extends Component {
            Accept: "application/json"
        }
     }).then(res => res.json())
-    .then(console.log)
+    .then()
 }
   
 
