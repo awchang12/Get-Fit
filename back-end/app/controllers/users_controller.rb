@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     end
   
     def create
-      debugger
       @user = User.new(user_params)
       if @user.save
         render json: @user, status: :accepted
@@ -37,8 +36,9 @@ class UsersController < ApplicationController
     end
   
     def update
-  
-  
+      debugger
+      @user.update(user_params)
+      render json: @user
     end
   
     private

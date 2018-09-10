@@ -28,6 +28,7 @@ export default class LogsContainer extends Component {
             <div className="meta" />
             <div className="description">
                 <p>Start Weight: {this.props.user.startingWeight}</p>
+                <p>Goal Weight: {this.props.user.goalWeight}</p>
                 {this.state.lastLog ? <p>Current Weight: {this.state.lastLog.weight}</p> : null}
                 {this.state.lastLog ? <p>lbs til target weight: {Math.abs(this.state.lastLog.weight - this.props.user.goalWeight)}</p> : null }
             </div>

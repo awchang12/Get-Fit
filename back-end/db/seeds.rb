@@ -11,6 +11,7 @@ anthony = User.create(first_name: "Anthony", last_name: "Chang", username: "awch
 jeff = User.create(first_name: "Jeff", last_name: "Johnson", username: "jj", startingWeight: 160, goalWeight: 175, height: 68, age: 35, gender: "male", password: "pw")
 
 alog1 = Log.create(date: "2018-8-31", weight: 208, user_id: 1)
+jlog1= Log.create(date:"2018-9-10", weight: 202, user_id:2)
 agoal1 = Goal.create(content: "This week I want to go to the gym 3 times", user_id: 1)
 agoal2 = Goal.create(content: "Go on 4 hikes this week!", user_id: 1)
 agoal3 = Goal.create(content: "Don't have a cheat meal this week.", user_id: 1)

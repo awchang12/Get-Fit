@@ -22,7 +22,6 @@ class App extends Component {
     }
 
     let url = "http://localhost:3000/login";
-    console.log(params)
     fetch(url, {
         method: "POST",
         body: JSON.stringify(params),
@@ -32,10 +31,9 @@ class App extends Component {
         }
     }).then(res => res.json())
     .then(data => {
-      console.log(data)
         if(data.success) {
             localStorage.setItem("token", data.token);
-            this.setState({ error: "" })
+            this.setState({ error: "", password: "" })
         } else {
             this.setState({ error: "Invalid username or password" });
         }
@@ -72,6 +70,13 @@ class App extends Component {
         goalWeight: event.currentTarget.goalWeight.value
     }
 
+    let user = {
+      username: event.currentTarget.username.value,
+      password: event.currentTarget.password.value
+    }
+
+    let url = "http://localhost:3000/login";
+
     console.log(params)
 
     fetch('http://localhost:3000/users',{
@@ -82,8 +87,27 @@ class App extends Component {
            Accept: "application/json"
        }
     }).then(res => res.json())
-    .then()
-}
+    .then(data => {
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        }
+    }).then(res => res.json())
+    .then(data => {
+      console.log(data)
+        if(data.success) {
+            localStorage.setItem("token", data.token);
+            this.setState({ error: "", signup: false})
+        } else {
+            this.setState({ error: "Invalid username or password" });
+        }
+    })
+    })
+  }
+
   
 
   render() {

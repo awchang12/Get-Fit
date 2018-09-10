@@ -13,7 +13,7 @@ class LogsController < ApplicationController
     end
   
     def create
-      @log = Log.new(user_params)
+      @log = Log.new(log_params)
       if @log.save
         render json: @log, status: :accepted
       else
@@ -28,8 +28,8 @@ class LogsController < ApplicationController
   
     private
   
-    def user_params
-      params.require(:log).permit(:id, :user_id, :weight)
+    def log_params
+      params.require(:log).permit(:id, :user_id, :weight, :date)
   
     end
   

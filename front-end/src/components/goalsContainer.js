@@ -22,9 +22,9 @@ export default class GoalsContainer extends Component {
         .catch(e => console.error(e))
     }
 
-    onAddClick = () => {
+    onToggleClick = () => {
         this.setState({
-            addGoal: true
+            addGoal: !this.state.addGoal
         })
     }
 
@@ -79,6 +79,7 @@ export default class GoalsContainer extends Component {
         return( <div className="raised card">
         {this.state.addGoal ? 
             <div className="ui container">
+                <button onClick={this.onToggleClick} className="ui button blue">Back to Goals</button>
                 <form className="ui small form" onSubmit={this.addGoal}>
                     <div className="field">
                         <label>Content</label>
@@ -88,7 +89,7 @@ export default class GoalsContainer extends Component {
                 </form>
             </div> : 
         <div className="content">
-            <div className="header">Weekly Goals {<button className="ui button blue" onClick={this.onAddClick}>add goal</button>}</div>
+            <div className="header">Weekly Goals {<button className="ui button blue" onClick={this.onToggleClick}>add goal</button>}</div>
             <div className="meta" />
             <div className="description">
                 {this.state.goals.map(goal => <li key={goal.id}>{goal.content}<button onClick={() => this.deleteGoal(goal.id)}>x</button></li>)}
