@@ -5,7 +5,8 @@ export default class EditUser extends Component {
     state={
         goalWeight: this.props.user.goalWeight,
         height: this.props.user.height,
-        age: this.props.user.age
+        age: this.props.user.age,
+        caloricGoal: this.props.user.caloricGoal
     }
 
     onGoalWeightChange= event => {
@@ -28,6 +29,13 @@ export default class EditUser extends Component {
         })
     }
 
+    onCalorieChange= event => {
+        console.log(event.target)
+        this.setState({
+            caloricGoal: event.target.value,
+        })
+    }
+
    
     render() {
         return( <form className="ui small form" onSubmit={(event) => this.props.editUser(event) }>
@@ -43,6 +51,10 @@ export default class EditUser extends Component {
         <div className="field">
             <label>Age</label>
             <input type="number" name="age" value={this.state.age} onChange={event => this.onAgeChange(event)} placeholder="Age"/>
+        </div>
+        <div className="field">
+            <label>Caloric Goal</label>
+            <input type="number" name="caloricGoal" value={this.state.caloricGoal} onChange={event => this.onCalorieChange(event)} placeholder="num of Calories"/>
         </div>
     </div>
 

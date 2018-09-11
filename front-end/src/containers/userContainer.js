@@ -66,7 +66,8 @@ export default class UserContainer extends Component {
         let params = {
           goalWeight: event.currentTarget.goalWeight.value,
           height: event.currentTarget.height.value,
-          age: event.currentTarget.age.value
+          age: event.currentTarget.age.value,
+          caloricGoal: event.currentTarget.caloricGoal.value
         }
         let token = localStorage.getItem("token")
         console.log(this.state.user)
