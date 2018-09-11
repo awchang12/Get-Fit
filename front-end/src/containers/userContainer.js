@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import GoalsContainer from '../components/goalsContainer'
 import LogsContainer from '../components/logsContainer'
+import FoodContainer from '../components/foodContainer'
 import Navbar from '../components/navbar'
 import EditUser from '../components/editUser'
 import LogsGraph from '../components/logsGraph'
@@ -12,7 +13,7 @@ export default class UserContainer extends Component {
        user: null,
        editUser: false,
        logsGraph: false,
-       showFood: false
+       showFood: false,
    }
     componentDidMount() {
         let token = localStorage.getItem("token")
@@ -96,8 +97,9 @@ export default class UserContainer extends Component {
                     <Navbar logout={this.props.logout} toggleFood={this.toggleFood} toggleEditTrue={this.editUserTrue} toggleEditFalse={this.editUserFalse} toggleGraphTrue={this.editLogsGraphTrue}/>
                     {this.state.logsGraph ? <h1>Logs Graph</h1> : <React.Fragment>{this.state.showFood ? <h1>Foods</h1> : <h1>Welcome {this.state.user.first_name}!</h1>}</React.Fragment>}
                     {this.state.editUser ? <EditUser user={this.state.user} editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <div className="ui two doubling stackable cards">
-                       <GoalsContainer user={this.state.user}/>
-                        <LogsContainer user={this.state.user}/>  
+                        <GoalsContainer user={this.state.user}/>
+                        <LogsContainer user={this.state.user}/>
+                        <FoodContainer user={this.state.user}/>
                     </div>}</React.Fragment>}</div>}
                    
                 </div>

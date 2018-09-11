@@ -6,7 +6,7 @@ import LogForm from './addLogForm'
 export default class LogsGraph extends Component {
     state= {
         addLog: false,
-        logs: [{color: 'hsl(288, 70%, 50%)',x: "2018-8-28",y: this.props.user.startingWeight}]
+        logs: [{color: 'hsl(288, 70%, 50%)',x: "2018-6-04",y: this.props.user.startingWeight}]
     }
     componentDidMount(){
         console.log("hello")

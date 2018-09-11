@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-anthony = User.create(first_name: "Anthony", last_name: "Chang", username: "awchang", startingWeight: 210, goalWeight: 185, height: 70, age: 26, gender: "male", password: "pw")
-jeff = User.create(first_name: "Jeff", last_name: "Johnson", username: "jj", startingWeight: 160, goalWeight: 175, height: 68, age: 35, gender: "male", password: "pw")
+anthony = User.create(first_name: "Anthony", last_name: "Chang", username: "awchang", startingWeight: 210, goalWeight: 185, height: 70, age: 26, gender: "male", password: "pw", caloricGoal: 2200)
+jeff = User.create(first_name: "Jeff", last_name: "Johnson", username: "jj", startingWeight: 160, goalWeight: 175, height: 68, age: 35, gender: "male", password: "pw", caloricGoal: 2500)
 
 alog1 = Log.create(date: "2018-8-31", weight: 208, user_id: 1)
 jlog1= Log.create(date:"2018-9-10", weight: 202, user_id:2)

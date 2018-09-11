@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_173345) do
     t.integer "fats"
     t.integer "carbs"
     t.integer "protein"
+    t.integer "calories"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_173345) do
     t.string "gender"
     t.string "password_digest"
     t.integer "goalWeight"
+    t.integer "caloricGoal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

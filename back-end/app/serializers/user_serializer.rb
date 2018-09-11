@@ -4,5 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :user_foods
   has_many :foods, through: :user_foods
   
-  attributes :id, :first_name, :last_name, :startingWeight, :goalWeight, :height, :age, :gender, :created_at
+  attributes :id, :first_name, :last_name, :startingWeight, :goalWeight, :height, :age, :gender, :created_at, :caloricGoal
 end

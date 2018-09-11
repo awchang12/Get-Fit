@@ -36,6 +36,10 @@ export default class Signup extends Component {
                             <label>Goal Weight</label>
                             <input type="number" name="goalWeight" placeholder="Goal Weight"/>
                         </div>
+                        <div className="field">
+                            <label>Caloric Goal</label>
+                            <input type="number" name="caloricGoal" placeholder="Caloric Goal"/>
+                        </div>
                     </div>
                     <div className="fields">
                         <div className="field">

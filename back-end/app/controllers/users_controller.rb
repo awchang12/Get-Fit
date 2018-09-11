@@ -13,7 +13,8 @@ class UsersController < ApplicationController
         startingWeight: current_user.startingWeight,
         gender: current_user.gender,
         goalWeight: current_user.goalWeight,
-        created_at: current_user.created_at
+        created_at: current_user.created_at,
+        caloricGoal: current_user.caloricGoal
       }
     end
   

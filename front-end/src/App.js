@@ -3,7 +3,6 @@ import './App.css';
 import Login from "./components/login"
 import UserContainer from './containers/userContainer'
 import Signup from './components/signup'
-import { Route } from "react-router-dom";
 
 
 
@@ -75,7 +74,8 @@ class App extends Component {
         age: event.currentTarget.age.value,
         gender: event.currentTarget.gender.value,
         startingWeight: event.currentTarget.startingWeight.value,
-        goalWeight: event.currentTarget.goalWeight.value
+        goalWeight: event.currentTarget.goalWeight.value,
+        caloricGoal: event.currentTarget.caloricGoal.value
     }
 
     let user = {

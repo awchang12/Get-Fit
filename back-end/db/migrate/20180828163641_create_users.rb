@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :gender
       t.string :password_digest
       t.integer :goalWeight
+      t.integer :caloricGoal
 
       t.timestamps
     end

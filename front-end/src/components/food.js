@@ -8,7 +8,10 @@ export default class Food extends Component {
     }
     onSearch = event => {
         console.log("in search")
-        let apiId="75fb2595"
+        if(this.state.searchTerm === "") {
+            alert("please type in a food item")
+        } else {
+            let apiId="75fb2595"
         let apiKey="ab7137242598380fe9d8d2dfca2d5962"
         let url="https://api.nutritionix.com/v1_1/search/"
         fetch(url + `${this.state.searchTerm}?results=0:20&fields=item_name,brand_name,item_id,nf_calories&appId=${apiId}&appKey=${apiKey}`)
@@ -21,6 +24,8 @@ export default class Food extends Component {
                 searchTerm: ""
             })
         })
+        }
+        
     }
 
     onChange= event => {
@@ -39,8 +44,9 @@ export default class Food extends Component {
                         <i className="search icon" onClick={this.onSearch}></i>
                     </div> 
                 </div>
+                {this.state.currentItems.length === 0 ? <div className="ui container"><h3>Search For Some Foods!</h3></div> : null }
                 <div className="ui three doubling stackable cards">
-                    {this.state.currentItems.length !==0 ? this.state.currentItems.map(item => <FoodCard key={item.fields.item_id} item={item}/>): null }
+                    {this.state.currentItems.map(item => <FoodCard key={item.fields.item_id} item={item}/>) }
                 </div>
             </div>
           
