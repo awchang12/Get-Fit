@@ -55,7 +55,6 @@ export default class Signup extends Component {
                             </select>
                         </div>
                     </div>
-
                     <button className="ui button" type="submit">Submit</button>
                 </form>
             </div>

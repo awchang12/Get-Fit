@@ -1,36 +1,53 @@
-import React from 'react'
+import React, { Component }from 'react'
 
-const EditUser = (props) => {
-    return( <form className="ui small form" onSubmit={(event) => props.editUser(event) }>
+export default class EditUser extends Component {
+
+    state={
+        goalWeight: this.props.user.goalWeight,
+        height: this.props.user.height,
+        age: this.props.user.age
+    }
+
+    onGoalWeightChange= event => {
+        console.log(event.target)
+        this.setState({
+            goalWeight: event.target.value,
+        })
+    }
+
+    onHeightChange = event => {
+        this.setState({
+            height: event.target.value
+        })
+    }
+
+    onAgeChange= event => {
+        console.log(event.target)
+        this.setState({
+            age: event.target.value,
+        })
+    }
+
+   
+    render() {
+        return( <form className="ui small form" onSubmit={(event) => this.props.editUser(event) }>
     <div className="fields">
-        <div className="field">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Username"/>
-        </div>
-    </div>
-    <div className="fields">
-        <div className="field">
-            <label>Starting Weight</label>
-            <input type="number" name="startingWeight" placeholder="Starting Weight"/>
-        </div>
         <div className="field">
             <label>Goal Weight</label>
-            <input type="number" name="goalWeight" placeholder="Goal Weight"/>
+            <input type="number" name="goalWeight" value={this.state.goalWeight} onChange={event => this.onGoalWeightChange(event)} placeholder="Goal Weight"/>
         </div>
-    </div>
-    <div className="fields">
         <div className="field">
             <label>Height in inches</label>
-            <input type="number" name="height" placeholder="Inches"/>
+            <input type="number" name="height" value={this.state.height} onChange={event => this.onHeightChange(event)} placeholder="Inches"/>
         </div>
         <div className="field">
             <label>Age</label>
-            <input type="number" name="age" placeholder="Age"/>
+            <input type="number" name="age" value={this.state.age} onChange={event => this.onAgeChange(event)} placeholder="Age"/>
         </div>
     </div>
 
     <button className="ui button" type="submit">Submit</button>
 </form>)
+    }
+    
 }
-
-export default EditUser

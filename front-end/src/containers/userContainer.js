@@ -63,8 +63,6 @@ export default class UserContainer extends Component {
     onEditSubmit = event => {
         event.preventDefault()
         let params = {
-          username: event.currentTarget.username.value,
-          startingWeight: event.currentTarget.startingWeight.value,
           goalWeight: event.currentTarget.goalWeight.value,
           height: event.currentTarget.height.value,
           age: event.currentTarget.age.value
@@ -81,6 +79,7 @@ export default class UserContainer extends Component {
             }
         }).then(res => res.json())
         .then(data => {
+            console.log(data)
             this.setState({
                 user: data,
                 editUser: false
@@ -96,7 +95,7 @@ export default class UserContainer extends Component {
                 <div className="ui container">
                     <Navbar logout={this.props.logout} toggleFood={this.toggleFood} toggleEditTrue={this.editUserTrue} toggleEditFalse={this.editUserFalse} toggleGraphTrue={this.editLogsGraphTrue}/>
                     {this.state.logsGraph ? <h1>Logs Graph</h1> : <React.Fragment>{this.state.showFood ? <h1>Foods</h1> : <h1>Welcome {this.state.user.first_name}!</h1>}</React.Fragment>}
-                    {this.state.editUser ? <EditUser editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <div className="ui two doubling stackable cards">
+                    {this.state.editUser ? <EditUser user={this.state.user} editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <div className="ui two doubling stackable cards">
                        <GoalsContainer user={this.state.user}/>
                         <LogsContainer user={this.state.user}/>  
                     </div>}</React.Fragment>}</div>}

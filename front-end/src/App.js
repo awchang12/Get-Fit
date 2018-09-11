@@ -56,6 +56,14 @@ class App extends Component {
     })
   }
 
+  displayErrors = errors => {
+    let errorlist = errors.map(error => {
+      return `-${error} \n`;
+    });
+    alert(errorlist.join(" "));
+  };
+
+
   onSignup = (event) => {
     event.preventDefault()
     let params = {
@@ -88,23 +96,29 @@ class App extends Component {
        }
     }).then(res => res.json())
     .then(data => {
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-        }
-    }).then(res => res.json())
-    .then(data => {
-      console.log(data)
-        if(data.success) {
-            localStorage.setItem("token", data.token);
-            this.setState({ error: "", signup: false})
-        } else {
-            this.setState({ error: "Invalid username or password" });
-        }
-    })
+      console.log(data.errors)
+      if(data.errors.length !== 0) {
+        this.displayErrors(data.errors)
+      } else {
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(user),
+          headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+          }
+      }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+          if(data.success) {
+              localStorage.setItem("token", data.token);
+              this.setState({ error: "", signup: false})
+          } else {
+              this.setState({ error: "Invalid username or password" });
+              alert(this.state.error)
+          }
+      })
+      }
     })
   }
 

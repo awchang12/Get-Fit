@@ -25,7 +25,7 @@ export default class LogForm extends Component {
             <div className="fields">
                 <div className="field">
                 <label>Choose Date</label>
-                    <DatePicker onChange={this.handleChange} name="date" selected={this.state.date}/>
+                    <DatePicker onChange={this.handleChange} name="date" maxDate={new Date()} selected={this.state.date}/>
                 </div>
                 <div className="field">
                     <label>Current Weight</label>

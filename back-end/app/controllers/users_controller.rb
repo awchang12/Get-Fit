@@ -12,7 +12,8 @@ class UsersController < ApplicationController
         age: current_user.age,
         startingWeight: current_user.startingWeight,
         gender: current_user.gender,
-        goalWeight: current_user.goalWeight
+        goalWeight: current_user.goalWeight,
+        created_at: current_user.created_at
       }
     end
   
@@ -36,7 +37,6 @@ class UsersController < ApplicationController
     end
   
     def update
-      debugger
       @user.update(user_params)
       render json: @user
     end

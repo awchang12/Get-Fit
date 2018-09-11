@@ -19,9 +19,8 @@ export default class LogsGraph extends Component {
         .then(data => {
             console.log(data)
             let logInfo=[]
-            data.map(log => {
-                logInfo.push({color: 'hsl(288, 70%, 50%)', x: log.date, y: log.weight})
-            })
+            data.map(log => 
+                logInfo.push({color: 'hsl(288, 70%, 50%)', x: log.date, y: log.weight}))
             this.setState({
                 logs: [...this.state.logs, ...logInfo]
             })
@@ -60,17 +59,27 @@ export default class LogsGraph extends Component {
             body: JSON.stringify(data)
         }).then(res => res.json())
         .then(data => {
-            console.log(data)
             let dataInfo = [{color: 'hsl(288, 70%, 50%)', x: data.date, y: data.weight}]
             this.setState({
                 logs: [...this.state.logs, ...dataInfo],
                 addLog: false
             })
-            console.log(this.state.logs)
         })
     }
 
     render(){
+        let sorted = this.state.logs.sort(function (a, b) {
+            var key1 = new Date(a.x);
+            var key2 = new Date(b.x);
+        
+            if (key1 < key2) {
+                return -1;
+            } else if (key1 === key2) {
+                return 0;
+            } else {
+                return 1;
+            }
+        })
         return(<React.Fragment>{this.state.addLog ? <LogForm onSubmit={this.onSubmit} user={this.props.user} toggle={this.onClick}/> : <React.Fragment><button className="ui button blue" onClick={this.onClick}>Add Log</button><Line
           width={900}
           height={400}
@@ -81,7 +90,7 @@ export default class LogsGraph extends Component {
             left: 80
           }}
           data={[
-            {id: 'Logs',color: 'hsla(183, 100%, 35%, 1)',data: this.state.logs}
+            {id: 'Logs',color: 'hsla(183, 100%, 35%, 1)',data: sorted}
           ]}
         /></React.Fragment>}</React.Fragment>
             

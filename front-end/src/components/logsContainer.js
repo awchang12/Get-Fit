@@ -14,7 +14,20 @@ export default class LogsContainer extends Component {
             }
         }).then(res => res.json())
         .then(data => {
-            let lastLog = data[data.length - 1]
+
+            let orderedLogs = data.sort(function (a, b) {
+                var key1 = new Date(a.date);
+                var key2 = new Date(b.date);
+            
+                if (key1 < key2) {
+                    return -1;
+                } else if (key1 === key2) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            })
+            let lastLog = orderedLogs[orderedLogs.length - 1]
             this.setState({
                 lastLog: lastLog
             })
