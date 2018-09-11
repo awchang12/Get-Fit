@@ -14,10 +14,9 @@ export default class Food extends Component {
             let apiId="75fb2595"
         let apiKey="ab7137242598380fe9d8d2dfca2d5962"
         let url="https://api.nutritionix.com/v1_1/search/"
-        fetch(url + `${this.state.searchTerm}?results=0:20&fields=item_name,brand_name,item_id,nf_calories&appId=${apiId}&appKey=${apiKey}`)
+        fetch(url + `${this.state.searchTerm}?results=0:30&fields=item_name,brand_name,item_id,nf_calories&appId=${apiId}&appKey=${apiKey}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data.hits)
 
             this.setState({
                 currentItems: data.hits,

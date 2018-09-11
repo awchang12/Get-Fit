@@ -60,7 +60,7 @@ export default class FoodCard extends Component {
             <button className="ui button" onClick={event => this.onChangeBack()}>less Info</button>
             <button className="ui button" onClick={event => this.addFood()}>add Food</button>
         </div>
-        : <div className="card" ><h3>{this.props.item.fields.item_name} - {this.props.item.fields.nf_calories} calories</h3><button className="ui button" onClick={event => this.onClick()}>more info?</button></div>}
+        : <div className="card" ><h3>{this.props.item.fields.item_name} - {this.props.item.fields.nf_calories} calories</h3><button className="ui button" onClick={event => this.onClick()}>click to see Macronutrients</button></div>}
         </React.Fragment>)
     }
 }

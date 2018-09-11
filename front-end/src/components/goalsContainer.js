@@ -76,9 +76,9 @@ export default class GoalsContainer extends Component {
         })
     }
     render(){
-        return( <div className="raised card">
+        return( <div className="card">
         {this.state.addGoal ? 
-            <div className="ui container">
+            <div>
                 <button onClick={this.onToggleClick} className="ui button blue">Back to Goals</button>
                 <form className="ui small form" onSubmit={this.addGoal}>
                     <div className="field">

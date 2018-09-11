@@ -127,9 +127,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <h1 className="App-title">Get Fit</h1>
-        </header>
+        </header> */}
         <React.Fragment>
           {localStorage.token ? <UserContainer logout={this.logout}/> : 
           <React.Fragment>
