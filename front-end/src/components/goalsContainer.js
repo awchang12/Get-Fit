@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Button } from 'semantic-ui-react'
+
 export default class GoalsContainer extends Component {
     state= {
         goals: [],
@@ -79,20 +81,20 @@ export default class GoalsContainer extends Component {
         return( <div className="card">
         {this.state.addGoal ? 
             <div>
-                <button onClick={this.onToggleClick} className="ui button blue">Back to Goals</button>
+                <Button basic onClick={this.onToggleClick} color="teal">Back to Goals</Button>
                 <form className="ui small form" onSubmit={this.addGoal}>
                     <div className="field">
                         <label>Content</label>
                         <textarea type="textarea" onChange={this.onContentChange} name="content" placeholder="My goal is..."/>
                     </div>
-                    <button className="ui button">Add goal!</button>
+                    <Button basic color="green">Add goal!</Button>
                 </form>
             </div> : 
         <div className="content">
-            <div className="header">Weekly Goals {<button className="ui button blue" onClick={this.onToggleClick}>add goal</button>}</div>
-            <div className="meta" />
+            <div className="header">Weekly Goals</div>
+            <div className="meta"><Button basic size="mini" color="teal" onClick={this.onToggleClick}>add goal</Button></div>
             <div className="description">
-                {this.state.goals.map(goal => <li key={goal.id}>{goal.content}<button onClick={() => this.deleteGoal(goal.id)}>x</button></li>)}
+                {this.state.goals.map(goal => <li key={goal.id}>{goal.content}<Button basic compact size="mini" onClick={() => this.deleteGoal(goal.id)}>x</Button></li>)}
             </div>
         </div>}
     </div> )

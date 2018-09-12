@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Card, Button} from 'semantic-ui-react'
+
 export default class FoodCard extends Component {
     state={
         toggleInfo: false,
@@ -52,15 +54,42 @@ export default class FoodCard extends Component {
 
     render(){
         return(<React.Fragment>{this.state.toggleInfo ? 
-        <div className="card" >
-            <h3>{this.props.item.fields.item_name} - {this.props.item.fields.nf_calories} calories</h3>
-            <p>Protein: {this.state.moreInfo.nf_protein}g</p>
-            <p>Carbohydrates: {this.state.moreInfo.nf_total_carbohydrate}g</p>
-            <p>Fats: {this.state.moreInfo.nf_total_fat}g</p>
-            <button className="ui button" onClick={event => this.onChangeBack()}>less Info</button>
-            <button className="ui button" onClick={event => this.addFood()}>add Food</button>
-        </div>
-        : <div className="card" ><h3>{this.props.item.fields.item_name} - {this.props.item.fields.nf_calories} calories</h3><button className="ui button" onClick={event => this.onClick()}>click to see Macronutrients</button></div>}
+        <Card>
+      <Card.Content>
+        <Card.Header>{this.props.item.fields.item_name}</Card.Header>
+        <Card.Meta>{this.props.item.fields.nf_calories} calories</Card.Meta>
+        <Card.Description>
+          <p>Protein: {this.state.moreInfo.nf_protein}g</p>
+          <p>Carbohydrates: {this.state.moreInfo.nf_total_carbohydrate}g</p>
+          <p>Fats: {this.state.moreInfo.nf_total_fat}g</p>
+        </Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+      <div className='ui two buttons'>
+        <Button basic color='green' onClick={event => this.addFood()}>
+          Add
+        </Button>
+        <Button basic color='red' onClick={event => this.onChangeBack()}>
+          less info
+        </Button>
+      </div>
+    </Card.Content>
+  </Card>
+        : 
+    <Card>
+      <Card.Content>
+        <Card.Header>{this.props.item.fields.item_name}</Card.Header>
+        <Card.Meta>{this.props.item.fields.nf_calories} calories</Card.Meta>
+        <Card.Description>
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+          <Button basic color='teal' onClick={event => this.onClick()}>
+            Macronutrients
+          </Button>
+      </Card.Content>
+    </Card>
+        }
         </React.Fragment>)
     }
 }

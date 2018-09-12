@@ -14,6 +14,7 @@ export default class UserContainer extends Component {
        editUser: false,
        logsGraph: false,
        showFood: false,
+       activeItem: 'home'
    }
     componentDidMount() {
         let token = localStorage.getItem("token")
@@ -34,7 +35,8 @@ export default class UserContainer extends Component {
         this.setState({
             editUser: true,
             logsGraph: false,
-            showFood: false
+            showFood: false,
+            activeItem: 'edit'
         })
     }
 
@@ -42,14 +44,16 @@ export default class UserContainer extends Component {
         this.setState({
             editUser: false,
             logsGraph: false,
-            showFood: false
+            showFood: false,
+            activeItem: 'home'
         })
     }
 
     editLogsGraphTrue = () => {
         this.setState({
             logsGraph: true,
-            editUser: false
+            editUser: false,
+            activeItem: 'logs'
         })
     }
 
@@ -57,7 +61,8 @@ export default class UserContainer extends Component {
         this.setState({
             showFood: true,
             editUser: false,
-            logsGraph: false
+            logsGraph: false,
+            activeItem: 'foods'
         })
     }
 
@@ -92,12 +97,12 @@ export default class UserContainer extends Component {
  
     render(){
         return(
-            <div>
+            <React.Fragment>
                 {this.state.user ? (
                 <div className="ui container">
-                    <Navbar logout={this.props.logout} toggleFood={this.toggleFood} toggleEditTrue={this.editUserTrue} toggleEditFalse={this.editUserFalse} toggleGraphTrue={this.editLogsGraphTrue}/>
-                    {this.state.logsGraph ? <h1>Logs Graph</h1> : <React.Fragment>{this.state.showFood ? <h1>Foods</h1> : <h1>Welcome {this.state.user.first_name}!</h1>}</React.Fragment>}
-                    {this.state.editUser ? <EditUser user={this.state.user} editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <div className="ui three doubling stackable cards">
+                    <Navbar activeItem={this.state.activeItem} logout={this.props.logout} toggleFood={this.toggleFood} toggleEditTrue={this.editUserTrue} toggleEditFalse={this.editUserFalse} toggleGraphTrue={this.editLogsGraphTrue}/>
+                    {this.state.logsGraph ? <h1 className="starting-h1">Logs Graph</h1> : <React.Fragment>{this.state.showFood ? <h1 className="starting-h1">Foods</h1> : <React.Fragment>{this.state.editUser ? <h1 className="starting-h1">Edit User Form</h1> : <h1 className="starting-h1">Welcome {this.state.user.first_name}!</h1>}</React.Fragment>}</React.Fragment>}
+                    {this.state.editUser ? <EditUser user={this.state.user} editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <div className="ui three doubling stackable cards user">
                         <GoalsContainer user={this.state.user}/>
                         <LogsContainer user={this.state.user}/>
                         <FoodContainer user={this.state.user}/>
@@ -107,7 +112,7 @@ export default class UserContainer extends Component {
                 ) : (
                 <p>Loading...</p>
                 )}
-            </div>
+            </React.Fragment>
         )
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from "./components/login"
+import LoginForm from "./components/login"
 import UserContainer from './containers/userContainer'
 import Signup from './components/signup'
 
@@ -20,6 +20,7 @@ class App extends Component {
         password: this.state.password
     }
 
+
     let url = "http://localhost:3000/login";
     fetch(url, {
         method: "POST",
@@ -35,6 +36,7 @@ class App extends Component {
             this.setState({ error: "", password: "" })
         } else {
             this.setState({ error: "Invalid username or password" });
+            alert(this.state.error)
         }
     })
 }
@@ -63,8 +65,10 @@ class App extends Component {
   };
 
 
-  onSignup = (event) => {
+  onSignup = (event, gender) => {
     event.preventDefault()
+    
+
     let params = {
         first_name: event.currentTarget.firstName.value,
         last_name: event.currentTarget.lastName.value,
@@ -72,7 +76,7 @@ class App extends Component {
         password: event.currentTarget.password.value,
         height: event.currentTarget.height.value,
         age: event.currentTarget.age.value,
-        gender: event.currentTarget.gender.value,
+        gender: gender,
         startingWeight: event.currentTarget.startingWeight.value,
         goalWeight: event.currentTarget.goalWeight.value,
         caloricGoal: event.currentTarget.caloricGoal.value
@@ -96,8 +100,9 @@ class App extends Component {
        }
     }).then(res => res.json())
     .then(data => {
+
       console.log(data.errors)
-      if(data.errors.length !== 0) {
+      if(data.errors && data.errors.length !== 0) {
         this.displayErrors(data.errors)
       } else {
         fetch(url, {
@@ -133,7 +138,7 @@ class App extends Component {
         <React.Fragment>
           {localStorage.token ? <UserContainer logout={this.logout}/> : 
           <React.Fragment>
-          {this.state.signup ? <Signup signup={this.onSignup} login={this.toggleSignup}/> :<Login 
+          {this.state.signup ? <Signup signup={this.onSignup} login={this.toggleSignup}/> :<LoginForm 
           signup={this.toggleSignup}
           usernameChange={this.onUsernameChange}
           passwordChange={this.onPasswordChange}

@@ -8,3 +8,29 @@ body {
 .ui.search {
   margin-bottom: 20px;
 }
+
+.signup {
+  margin: 60px 150px 
+ 
+}
+
+.signup-h1 {
+  margin-bottom: 25px;
+}
+
+.user{
+  margin: auto
+}
+
+.navbar {
+  margin: auto
+}
+
+.datepicker {
+  margin: auto
+}
+
+.starting-h1 {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}

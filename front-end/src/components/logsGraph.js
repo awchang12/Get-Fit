@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { Line } from '@nivo/line'
 import LogForm from './addLogForm'
+import { Button } from 'semantic-ui-react'
 
 export default class LogsGraph extends Component {
     state= {
@@ -80,27 +81,23 @@ export default class LogsGraph extends Component {
                 return 1;
             }
         })
-        return(<React.Fragment>{this.state.addLog ? <LogForm onSubmit={this.onSubmit} user={this.props.user} toggle={this.onClick}/> : <React.Fragment><button className="ui button blue" onClick={this.onClick}>Add Log</button><Line
-          width={900}
-          height={400}
-          margin={{
-            top: 20,
-            right: 30,
-            bottom: 60,
-            left: 80
-          }}
-          data={[
-            {id: 'Logs',color: 'hsla(183, 100%, 35%, 1)',data: sorted}
-          ]}
-        /></React.Fragment>}</React.Fragment>
+        return(<React.Fragment>{this.state.addLog ? <LogForm onSubmit={this.onSubmit} user={this.props.user} toggle={this.onClick}/> : <React.Fragment><Button color="teal" onClick={this.onClick}>Add Log</Button>
+                <Line
+                  width={900}
+                  height={400}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    bottom: 60,
+                    left: 80
+                }}
+                  data={[
+                    {id: 'Logs',color: 'hsla(183, 100%, 35%, 1)',data: sorted}
+                ]}
+                />
+            </React.Fragment>}
+        </React.Fragment>
             
     )
     }
 }
-
-// [
-//     {color: 'hsl(288, 70%, 50%)',x: 'HN',y: 47},
-//     {color: 'hsl(304, 70%, 50%)',x: 'SB',y: 7},
-//     {color: 'hsl(95, 70%, 50%)',x: 'TK',y: 9},
-//     {color: 'hsl(95, 70%, 50%)',x: 'BY',y: 9}
-//   ]
