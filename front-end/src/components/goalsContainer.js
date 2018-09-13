@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Card, Button, Form } from 'semantic-ui-react'
+import { Card, Button, Form, List } from 'semantic-ui-react'
 
 export default class GoalsContainer extends Component {
     state= {
@@ -102,10 +102,18 @@ export default class GoalsContainer extends Component {
     
         <Card>
       <Card.Content>
-        <Card.Header>Weekly Goals</Card.Header>
-        <Card.Meta><Button basic size="mini" color="teal" onClick={this.onToggleClick}>add goal</Button></Card.Meta>
+        <Card.Header className="goal-header">Weekly Goals</Card.Header>
+        <Card.Meta><Button basic className="goal-button" size="mini" color="teal" onClick={this.onToggleClick}>add goal</Button></Card.Meta>
         <Card.Description>
-        {this.state.goals.map(goal => <li key={goal.id}>{goal.content}<button onClick={() => this.deleteGoal(goal.id)}>x</button></li>)}
+            <List divided relaxed size="small">
+            {this.state.goals.map(goal => <List.Item>
+      <List.Content>
+        <List.Header ></List.Header>
+        <List.Description >{goal.content}<button onClick={() => this.deleteGoal(goal.id)}>x</button></List.Description>
+      </List.Content>
+        </List.Item>)}
+            </List>
+        
         </Card.Description>
       </Card.Content>
     </Card>

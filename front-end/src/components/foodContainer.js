@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, List } from 'semantic-ui-react'
 
 export default class FoodContainer extends Component {
 
@@ -58,7 +58,16 @@ export default class FoodContainer extends Component {
               <Card.Meta></Card.Meta>
               <Card.Description>
               <h5>Daily Caloric Goal: {this.props.user.caloricGoal} calories</h5>
-              {this.state.foods.length !== 0 ? this.state.foods.map(food => <li key={food.id}>{food.name} - {food.calories} calories<button onClick={() => this.deleteFood(food.id)}>x</button></li>) : <h5>Go to the Foods tab to add foods!</h5>}
+              {this.state.foods.length !== 0 ? 
+              <List>
+              {this.state.foods.map(food => 
+              <List.Item>
+              <List.Content>
+                <List.Header ></List.Header>
+                <List.Description >{food.name} - {food.calories} calories<button onClick={() => this.deleteFood(food.id)}>x</button></List.Description>
+              </List.Content>
+                </List.Item>
+              )}</List> : <h5>Go to the Foods tab to add foods!</h5>}
             {caloricDifference > 0 ? <h5>Calories left: {caloricDifference}</h5> : <h5>Calories Over: {Math.abs(caloricDifference)}</h5>}
             
                 </Card.Description>
