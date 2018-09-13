@@ -35,7 +35,7 @@ export default class LogsGraph extends Component {
         })
     }
 
-    onSubmit = event => {
+    onSubmit = (event) => {
         event.preventDefault()
         console.log(event.currentTarget.date.value)
         let newDate=event.currentTarget.date.value.split("/")
@@ -81,7 +81,7 @@ export default class LogsGraph extends Component {
                 return 1;
             }
         })
-        return(<React.Fragment>{this.state.addLog ? <LogForm onSubmit={this.onSubmit} user={this.props.user} toggle={this.onClick}/> : <React.Fragment><Button color="teal" onClick={this.onClick}>Add Log</Button>
+        return(<React.Fragment>{this.state.addLog ? <LogForm onSubmit={this.onSubmit} user={this.props.user} toggle={this.onClick}/> : <React.Fragment><Button basic color="teal" onClick={this.onClick}>Add Log</Button>
                 <Line
                   width={900}
                   height={400}

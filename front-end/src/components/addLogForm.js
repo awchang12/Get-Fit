@@ -21,15 +21,15 @@ export default class LogForm extends Component {
     
     render() {
         return(
-    <Form className="signup" size='tiny' onSubmit={event => this.props.onSubmit(event)}>
-        <Button color="teal" onClick={this.props.toggle}>back to Logs</Button> 
+    <Form className="signup" size='tiny' onSubmit={(event, date) => this.props.onSubmit(event, this.state.date )}>
+        <Button basic size="small" color="teal" onClick={this.props.toggle}>back to Logs</Button> 
         <Form.Group widths='equal'>
-          <DatePicker className="datepicker" onChange={this.handleChange} name="date" maxDate={new Date()} selected={this.state.date}/>
+          <Form.Input required type='number' fluid label='weight'  name="weight" placeholder='Weight' />  
         </Form.Group>
         <Form.Group widths='equal'> 
-          <Form.Input required type='number' fluid label='weight'  name="weight" placeholder='Weight' />
+          <DatePicker required onChange={this.handleChange} name="date" maxDate={new Date()} selected={this.state.date}/>
         </Form.Group>
-        <Form.Button color="teal">Submit</Form.Button>
+        <Form.Button basic size="small" color="teal">Submit</Form.Button>
       </Form>
     )
     }
