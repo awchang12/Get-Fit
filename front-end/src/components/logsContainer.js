@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Card, Button } from 'semantic-ui-react'
+
 
 export default class LogsContainer extends Component {
     state= {
@@ -35,17 +37,19 @@ export default class LogsContainer extends Component {
         .catch(e => console.error(e))
     }
     render(){
-        return( <div className="card">
-        <div className="content">
-            <div className="header">Weight Progress </div>
-            <div className="meta" />
-            <div className="description">
-                <p>Start Weight: {this.props.user.startingWeight}</p>
-                <p>Goal Weight: {this.props.user.goalWeight}</p>
-                {this.state.lastLog ? <p>Current Weight: {this.state.lastLog.weight}</p> : null}
-                {this.state.lastLog ? <p>lbs til target weight: {Math.abs(this.state.lastLog.weight - this.props.user.goalWeight)}</p> : null }
-            </div>
-        </div>
-    </div> )
+        return( 
+    <Card>
+      <Card.Content>
+        <Card.Header>Weight Progress</Card.Header>
+        <Card.Meta></Card.Meta>
+        <Card.Description>
+        <p>Start Weight: {this.props.user.startingWeight}lbs</p>
+                <p>Goal Weight: {this.props.user.goalWeight}lbs</p>
+                {this.state.lastLog ? <p>Current Weight: {this.state.lastLog.weight}lbs</p> : null}
+                {this.state.lastLog ? <p>lbs til target weight: {Math.abs(this.state.lastLog.weight - this.props.user.goalWeight)}lbs</p> : null }
+        </Card.Description>
+      </Card.Content>
+    </Card>
+    )
     }
 }

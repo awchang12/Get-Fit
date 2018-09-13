@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Card, Button } from 'semantic-ui-react'
+
 export default class FoodContainer extends Component {
 
     state={
@@ -49,19 +51,25 @@ export default class FoodContainer extends Component {
         })
         let caloricDifference = this.props.user.caloricGoal - totalCalories
         console.log(totalCalories)
-        return( <div className="card">
-        <div className="content">
-            <div className="header">Daily Caloric Goal: {this.props.user.caloricGoal} calories</div>
-            <div className="meta" />
-            <div className="description">
-            {this.state.foods.length !== 0 ? this.state.foods.map(food => <li key={food.id}>{food.name} - {food.calories} calories<button onClick={() => this.deleteFood(food.id)}>x</button></li>) : <h5>Go to the Foods tab to add foods!</h5>}
+        return( 
+          <Card>
+            <Card.Content>
+              <Card.Header>Track your Calories!</Card.Header>
+              <Card.Meta></Card.Meta>
+              <Card.Description>
+              <h5>Daily Caloric Goal: {this.props.user.caloricGoal} calories</h5>
+              {this.state.foods.length !== 0 ? this.state.foods.map(food => <li key={food.id}>{food.name} - {food.calories} calories<button onClick={() => this.deleteFood(food.id)}>x</button></li>) : <h5>Go to the Foods tab to add foods!</h5>}
             {caloricDifference > 0 ? <h5>Calories left: {caloricDifference}</h5> : <h5>Calories Over: {Math.abs(caloricDifference)}</h5>}
+            
+                </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
             <h5>Total Macronutrients Consumed: </h5>
                 <p>Protein - {totalProtein}g</p>  
                 <p>Carbs - {totalCarbs}g</p>  
                 <p>Fats - {totalFats}g</p>
-            </div>
-        </div>
-    </div> )
+            </Card.Content>
+          </Card>
+    )
     }
 }

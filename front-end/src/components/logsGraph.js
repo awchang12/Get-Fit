@@ -88,8 +88,8 @@ export default class LogsGraph extends Component {
                   margin={{
                     top: 20,
                     right: 30,
-                    bottom: 60,
-                    left: 80
+                    bottom: 20,
+                    left: 30
                 }}
                   data={[
                     {id: 'Logs',color: 'hsla(183, 100%, 35%, 1)',data: sorted}

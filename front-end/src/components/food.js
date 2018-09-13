@@ -45,10 +45,6 @@ export default class Food extends Component {
                     </div> 
                 </div>
                 {this.state.currentItems.length === 0 ? <div className="ui container"><h3>Search For Some Foods!</h3></div> : null }
-                {/* <div className="ui three doubling stackable cards">
-                    {this.state.currentItems.map(item => <FoodCard key={item.fields.item_id} item={item}/>) }
-                </div> */}
-                
             </div>
             <Card.Group centered>
                 {this.state.currentItems.map(item => <FoodCard key={item.fields.item_id} item={item}/>) }

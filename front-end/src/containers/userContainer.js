@@ -7,6 +7,7 @@ import Navbar from '../components/navbar'
 import EditUser from '../components/editUser'
 import LogsGraph from '../components/logsGraph'
 import Food from '../components/food'
+import { Card } from 'semantic-ui-react'
 
 export default class UserContainer extends Component {
    state = {
@@ -102,11 +103,11 @@ export default class UserContainer extends Component {
                 <div className="ui container">
                     <Navbar activeItem={this.state.activeItem} logout={this.props.logout} toggleFood={this.toggleFood} toggleEditTrue={this.editUserTrue} toggleEditFalse={this.editUserFalse} toggleGraphTrue={this.editLogsGraphTrue}/>
                     {this.state.logsGraph ? <h1 className="starting-h1">Logs Graph</h1> : <React.Fragment>{this.state.showFood ? <h1 className="starting-h1">Foods</h1> : <React.Fragment>{this.state.editUser ? <h1 className="starting-h1">Edit User Form</h1> : <h1 className="starting-h1">Welcome {this.state.user.first_name}!</h1>}</React.Fragment>}</React.Fragment>}
-                    {this.state.editUser ? <EditUser user={this.state.user} editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <div className="ui three doubling stackable cards user">
+                    {this.state.editUser ? <EditUser user={this.state.user} editUser={this.onEditSubmit}/> : <div>{this.state.logsGraph ? <LogsGraph user={this.state.user}/> : <React.Fragment>{this.state.showFood ? <Food/> : <Card.Group centered>
                         <GoalsContainer user={this.state.user}/>
                         <LogsContainer user={this.state.user}/>
                         <FoodContainer user={this.state.user}/>
-                    </div>}</React.Fragment>}</div>}
+                    </Card.Group>}</React.Fragment>}</div>}
                    
                 </div>
                 ) : (

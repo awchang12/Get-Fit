@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Button } from 'semantic-ui-react'
+import { Card, Button, Form } from 'semantic-ui-react'
 
 export default class GoalsContainer extends Component {
     state= {
@@ -78,25 +78,38 @@ export default class GoalsContainer extends Component {
         })
     }
     render(){
-        return( <div className="card">
+        return( <React.Fragment>
         {this.state.addGoal ? 
-            <div>
-                <Button basic onClick={this.onToggleClick} color="teal">Back to Goals</Button>
-                <form className="ui small form" onSubmit={this.addGoal}>
-                    <div className="field">
-                        <label>Content</label>
-                        <textarea type="textarea" onChange={this.onContentChange} name="content" placeholder="My goal is..."/>
-                    </div>
-                    <Button basic color="green">Add goal!</Button>
-                </form>
-            </div> : 
-        <div className="content">
-            <div className="header">Weekly Goals</div>
-            <div className="meta"><Button basic size="mini" color="teal" onClick={this.onToggleClick}>add goal</Button></div>
-            <div className="description">
-                {this.state.goals.map(goal => <li key={goal.id}>{goal.content}<Button basic compact size="mini" onClick={() => this.deleteGoal(goal.id)}>x</Button></li>)}
-            </div>
-        </div>}
-    </div> )
+           
+            <Card>
+            <Card.Content>
+              <Card.Header>Add a new Goal!</Card.Header>
+              <Card.Meta></Card.Meta>
+              <Card.Description>
+                <Form size='tiny' onSubmit={this.addGoal}>
+                  <Form.Group widths='equal'> 
+                    <Form.TextArea  fluid label='content'  name="content" placeholder='Add Goal here...' />
+                  </Form.Group>
+                  <Form.Button basic size="mini" color="teal">Submit</Form.Button>
+                </Form>
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Button basic size="mini" onClick={this.onToggleClick} color="teal">Back to Goals</Button>
+            </Card.Content>
+          </Card>
+             : 
+    
+        <Card>
+      <Card.Content>
+        <Card.Header>Weekly Goals</Card.Header>
+        <Card.Meta><Button basic size="mini" color="teal" onClick={this.onToggleClick}>add goal</Button></Card.Meta>
+        <Card.Description>
+        {this.state.goals.map(goal => <li key={goal.id}>{goal.content}<button onClick={() => this.deleteGoal(goal.id)}>x</button></li>)}
+        </Card.Description>
+      </Card.Content>
+    </Card>
+    }
+    </React.Fragment> )
     }
 }
